@@ -1,18 +1,20 @@
 export class TodoApp{
+    #projects;
+
     constructor(projects = []){
-        this._projects = projects;
+        this.#projects = projects;
     }
 
     addProject(project){
-        this._projects.push(project);
+        this.#projects.push(project);
     }
 
     getProjects(){
-        return this._projects.map(project => project.clone());
+        return this.#projects.map(project => project.clone());
     }
 
     getProject(projectId){
-        return this._projects.find(project => project.getId() === projectId);
+        return this.#projects.find(project => project.getId() === projectId);
     }
 
     addTodoItemToProject(projectId, item){

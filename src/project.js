@@ -1,46 +1,50 @@
 export class Project {
+    #title;
+    #todoItems;
+    #id;
+    
     constructor(title, todoItems = [], id = crypto.randomUUID()){
-        this._title = title;
-        this._todoItems = Array.isArray(todoItems) ? todoItems : [];
-        this._id = id;
+        this.#title = title;
+        this.#todoItems = Array.isArray(todoItems) ? todoItems : [];
+        this.#id = id;
     }
 
     getId(){
-        return this._id;
+        return this.#id;
     }
 
     getTitle(){
-        return this._title;
+        return this.#title;
     }
 
     setTitle(title){
-        if (typeof title !== "string" || name.trim() === ""){
+        if (typeof title !== "string" || title.trim() === ""){
             throw new Error("Project name must be a non-empty string.");
         }
-        this._title = title;
+        this.#title = title;
     }
 
     addTodoItem(todoItem){
         if (!todoItem || typeof todoItem.getId !== "function"){
             throw new Error("Invalid todo item: must have getId() method.")
         }
-        this._todoItems.push(todoItem);
+        this.#todoItems.push(todoItem);
     }
 
     deleteTodoItem(todoItemID){
-        this._todoItems = this._todoItems.filter(item => item.getId() !== todoItemID);
+        this.#todoItems = this.#todoItems.filter(item => item.getId() !== todoItemID);
     }
 
     getTodoItem(todoItemId){
-        return this._todoItems.find(todoItem => todoItem.getId() === todoItemId);
+        return this.#todoItems.find(todoItem => todoItem.getId() === todoItemId);
     }
 
     getTodoItems(){
-        return this._todoItems.map(item => item.clone());
+        return this.#todoItems.map(item => item.clone());
     }
 
     clone(){
-        return Project(this._title, this._todoItems, this._id);
+        return new Project(this.#title, this.getTodoItems(), this.#id);
     }
 
 }

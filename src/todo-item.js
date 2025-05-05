@@ -1,45 +1,51 @@
 export class TodoItem {
-    constructor(title, dueDate, description = "", id = crypto.randomUUID, dateCreated = new Date().toDateString()){
-        this._title = title;
-        this._dueDate = dueDate;
-        this._description = description;
-        this._id = id;
-        this._dateCreated = dateCreated;
+    #title;
+    #dueDate;
+    #description;
+    #id;
+    #dateCreated;
+
+    constructor(title, dueDate, description = "", id = crypto.randomUUID(), dateCreated = new Date().toDateString()){
+        this.#title = title;
+        this.#dueDate = dueDate;
+        this.#description = description;
+        this.#id = id;
+        this.#dateCreated = dateCreated;
     }
 
     getId(){
-        return this._id;
+        return this.#id;
     }
 
     setDueDate(dueDate){
-        this._dueDate = dueDate;
+        this.#dueDate = dueDate;
     }
 
     getDueDate(){
-        return dueDate;
+        return this.#dueDate;
     }
 
     getTitle(){
-        return this._title;
+        return this.#title;
     }
 
     getDateCreated(){
-        return this._dateCreated;
+        return this.#dateCreated;
     }
 
     setTitle(title){
-        this._title = title;
+        this.#title = title;
     }
 
     getDescription(){
-        return this._description;
+        return this.#description;
     }
 
     setDescription(description){
-        this._description = description;
+        this.#description = description;
     }
 
     clone(){
-        return TodoItem(this._title, this._dueDate, this._description, this._id, this._dateCreated);
+        return new TodoItem(this.#title, this.#dueDate, this.#description, this.#id, this.#dateCreated);
     }
 }
