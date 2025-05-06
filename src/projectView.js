@@ -17,9 +17,23 @@ export const projectView = (function(){
         projectElement.classList.add("project-container")
         projectElement.id = project.getId();
 
+        const header = document.createElement("div");
+        header.classList.add("project-header");
+
         const title = document.createElement("h2");
         title.textContent = project.getTitle();
-        projectElement.appendChild(title);
+        header.appendChild(title);
+
+        const projectDeleteButton = document.createElement("button");
+        projectDeleteButton.classList.add("project-delete-button");
+        projectDeleteButton.textContent = "X";
+        projectDeleteButton.addEventListener("click", () => {
+            if (window.confirm("Are you sure you want to delete the project?")){
+                projectElement.remove();
+            }
+        })
+        header.appendChild(projectDeleteButton);
+        projectElement.appendChild(header);
 
         const todoItemsContainer = document.createElement("ul");
         todoItemsContainer.classList.add("todo-items-container");

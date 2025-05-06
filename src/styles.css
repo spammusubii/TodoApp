@@ -121,6 +121,20 @@ footer {
     border: 3px solid lightblue;
 }
 
+.project-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-delete-button {
+    font-size: 1.5rem;
+    transition: all 0.4s;
+}
+
+.project-delete-button:hover {
+    font-size: 1.6rem;
+}
+
 .todo-item-header {
     display: flex;
     justify-content: space-between;
@@ -144,11 +158,15 @@ footer {
     gap: 5px;
 }
 
-.description-button {
+.description-button,
+.project-delete-button {
     border: none;
     background-color: white;
     cursor: pointer;
     transition: all 0.2s;
+}
+
+.description-button {
     font-size: 1.2rem;
 }
 
@@ -168,6 +186,7 @@ footer {
     color: lightgreen;
 }
 
-.delete-button:hover {
+.delete-button:hover,
+.project-delete-button:hover {
     color: red;
 }
