@@ -136,12 +136,12 @@ footer {
 }
 
 .todo-item-description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     list-style: none;
     font-size: 0.9rem;
-}
-
-.hidden {
-    display: none;
+    gap: 5px;
 }
 
 .description-button {
@@ -156,10 +156,18 @@ footer {
     font-size: 1.3em;
 }
 
+.hidden {
+    display: none;
+}
+
 .opened {
     transform: rotate(180deg);
 }
 
 .finished {
     color: lightgreen;
+}
+
+.delete-button:hover {
+    color: red;
 }

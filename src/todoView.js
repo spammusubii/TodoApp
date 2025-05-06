@@ -23,10 +23,14 @@ export const todoView = (function(){
         descriptionToggleBtn.innerHTML = "&#8681";
         btnContainer.appendChild(descriptionToggleBtn);
 
+        const deleteTodoItemBtn = document.createElement("button");
+        deleteTodoItemBtn.classList.add("description-button", "delete-button");
+        deleteTodoItemBtn.textContent = "X";
+        btnContainer.appendChild(deleteTodoItemBtn);
+
         todoItemHeader.append(btnContainer);
         todoItemElement.appendChild(todoItemHeader);
 
-        
         const descriptionDiv = document.createElement("div");
         descriptionDiv.classList.add("hidden");
 
@@ -46,6 +50,12 @@ export const todoView = (function(){
         checkBtn.addEventListener("click", (e) => {
             e.target.classList.toggle("finished");
             todoItem.setHasFinished();
+        })
+
+        deleteTodoItemBtn.addEventListener("click", (e) => {
+            if(window.confirm("Are you sure you want to delete?")){
+                todoItemElement.remove();
+            }
         })
         
         return todoItemElement;
