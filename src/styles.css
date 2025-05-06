@@ -1,5 +1,165 @@
+@font-face {
+    font-family: "Anaheim";
+    src: url("./assets/fonts/Anaheim-Regular.woff2") format("woff2"),
+        url("./assets/fonts/Anaheim-Regular.woff") format("woff");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "NotoSansMono";
+    src: url("./assets/fonts/NotoSansMono-Regular.woff2") format("woff2"),
+        url("./assets/fonts/NotoSansMono-Regular.woff") format("woff");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "RedHatDisplay";
+    src: url("./assets/fonts/RedHatDisplay-Regular.woff2") format("woff2"),
+        url("./assets/fonts/RedHatDisplay-Regular.woff") format("woff");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "RedHatDisplay";
+    src: url("./assets/fonts/RedHatDisplay-Italic.woff2") format("woff2"),
+        url("./assets/fonts/RedHatDisplay-Italic.woff") format("woff");
+    font-style: italic;
+    font-weight: normal;
+}
+
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+:root {
+    font-size: 16px;
+    --background-color: #edf2fb;
+    --border-color: #d7e3fc;
+    --header-background-color: #95b8d1;
+    --todo-item-background-color: #fcf5c7;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr 30px;
+    row-gap: 20px;
+    background-color: var(--background-color);
+}
+
+header {
+    text-align: center;
+    box-shadow: 2px 2px 7px 5px var(--border-color);
+    padding: 15px;
+    font-family: "NotoSansMono", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.2rem;
+}
+
+footer {
+    text-align: center;
+}
+
+.todo-app-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 300px));
+    grid-auto-rows: minmax(300px, auto);
+    justify-content: center;
+    gap: 40px;
+    padding: 10px;
+}
+
+.project-container {
+    padding: 15px;
+    min-height: 300px;
+    max-height: 500px;
+    overflow-y: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 8px 3px #7373734a;
+    background-color: white;
+}
+
+.project-container h2 {
+    font-family: "NotoSansMono", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.todo-items-container {
+    margin-top: 10px;
+    list-style: none;
+    display: grid;
+    grid-auto-rows: auto;
+    width: 95%;
+    row-gap: 10px;
+}
+
+.todo-item {
+    width: 100%;
+    padding: 5px;
+    text-overflow: ellipsis;
+    padding: 10px;
+    border: 1px solid #7373735b;
+    border-radius: 8px;
+    font-family: "NotoSansMono", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    transition: all 0.5s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 8px;
+}
+
+.todo-item:hover {
+    border: 3px solid lightblue;
+}
+
+.todo-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.todo-item-description-container {
+    list-style: none;
+    font-size: 0.9rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.description-button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.2rem;
+}
+
+.description-button:hover {
+    font-size: 1.3em;
+}
+
+.opened {
+    transform: rotate(180deg);
+}
+
+.finished {
+    color: lightgreen;
 }

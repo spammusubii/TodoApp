@@ -4,13 +4,15 @@ export class TodoItem {
     #description;
     #id;
     #dateCreated;
+    #hasFinished;
 
-    constructor(title, dueDate, description = "", id = crypto.randomUUID(), dateCreated = new Date().toDateString()){
+    constructor(title, description = "", dueDate = "", id = crypto.randomUUID(), dateCreated = new Date().toDateString(), hasFinished = false){
         this.#title = title;
         this.#dueDate = dueDate;
         this.#description = description;
         this.#id = id;
         this.#dateCreated = dateCreated;
+        this.hasFinished = hasFinished;
     }
 
     getId(){
@@ -45,7 +47,15 @@ export class TodoItem {
         this.#description = description;
     }
 
+    getHasFinished(){
+        return this.#hasFinished;
+    }
+
+    setHasFinished(){
+        this.#hasFinished = !this.#hasFinished;
+    }
+
     clone(){
-        return new TodoItem(this.#title, this.#dueDate, this.#description, this.#id, this.#dateCreated);
+        return new TodoItem(this.#title, this.#description, this.#dueDate, this.#id, this.#dateCreated, this.#hasFinished);
     }
 }
