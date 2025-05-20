@@ -20,7 +20,7 @@ export const todoView = (function(){
 
         const descriptionToggleBtn = document.createElement("button");
         descriptionToggleBtn.classList.add("description-button");
-        descriptionToggleBtn.innerHTML = "&#8681";
+        descriptionToggleBtn.innerHTML = "&#9653;";
         btnContainer.appendChild(descriptionToggleBtn);
 
         const deleteTodoItemBtn = document.createElement("button");

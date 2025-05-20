@@ -1,11 +1,15 @@
 import { todoView } from "./todoView";
 
 export const projectView = (function(){
+    const modal = document.querySelector(".add-todo-item-modal");
+
     // function to create a project element
     // input: project object
     // output: reference to project element
     function createProjectElement(project){
         const projectElement = document.createElement("div");
+        projectElement.classList.add("project-container")
+        projectElement.id = project.getId();
         populateProjectElement(project, projectElement);
         return projectElement;
     }
@@ -14,9 +18,6 @@ export const projectView = (function(){
     // input: reference to project element
     // output: reference to project element with todo item elements
     function populateProjectElement(project, projectElement){
-        projectElement.classList.add("project-container")
-        projectElement.id = project.getId();
-
         const header = document.createElement("div");
         header.classList.add("project-header");
 
@@ -46,10 +47,37 @@ export const projectView = (function(){
             todoItemsContainer.appendChild(li);
         })
 
+        const li = document.createElement("li");
+        li.id = project.getId() + "-delete-btn";
+        li.appendChild(todoItemButton(project.getId()));
+        li.classList.add("todo-item")
+        todoItemsContainer.appendChild(li);
+
         projectElement.appendChild(todoItemsContainer);
+    }
+
+    function todoItemButton(projectId){
+        const addTodoItemButton = document.createElement("button");
+        addTodoItemButton.textContent = "+ Todo Item";
+        addTodoItemButton.addEventListener("click", () => {
+            modal.style.display = "block";
+            document.querySelector("#projectId").value = projectId;
+        });
+        return addTodoItemButton;
+    }
+
+    function refreshProject(project, projectId){
+        const projectElement = document.querySelector("#projectId");
+        clearProject(projectElement);
+        populateProjectElement(project, projectId);
+    }
+
+    function clearProject(projectElement){
+        projectElement.innerHTML = "";
     }
 
     return {
         createProjectElement,
+        refreshProject,
     }
 })();
